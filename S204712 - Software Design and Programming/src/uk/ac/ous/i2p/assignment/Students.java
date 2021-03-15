@@ -2,7 +2,6 @@ package uk.ac.ous.i2p.assignment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,15 +10,17 @@ public class Students implements ContactTracing {
 	
 	
 	//Create the containers that will hold the maps
-	public Map<String, String> map_student;
-	public Map<String, String> map_course;
-	public Map<String, String> map_email;
-	public Map<String, String> map_studentcourse;
+	public Map<String, String> map_student = new HashMap<>();
+	public Map<String, String> map_course = new HashMap<>();
+	public Map<String, String> map_email = new HashMap<>();
+	public Map<String, String> map_studentcourse = new HashMap<>();
 	
 	//Create the container that will hold the COVID results
 	public Map<String, String> covid_result;
 	
 	public List<String> list1 = new ArrayList<>();
+	public List<String> list2 = new ArrayList<>();
+	public List<String> list3 = new ArrayList<>();
 	
 	
 	//Define the methods in the interface file
@@ -54,6 +55,7 @@ public class Students implements ContactTracing {
 	}
 
 	public List<String> findMatchingCourses(String inputStudentNumber) {
+		//List type must be string, so put matches into a String variable
 		String match = map_studentcourse.get(inputStudentNumber);
 		if (map_studentcourse.containsKey(inputStudentNumber)) {;
 			list1.add(match);			
@@ -64,15 +66,22 @@ public class Students implements ContactTracing {
 
 	public List<String> findMatchingStudents(List<String> matchingCourseList) {
 		for (String i : matchingCourseList) {
-			map_course.get(i);
-			System.out.print(i);
+			if (map_studentcourse.containsValue(i)) {
+				for (Map.Entry<String, String> entry : map_studentcourse.entrySet()) {
+					if (entry.getValue()==i) {						
+						list2.add(entry.getKey());
+					}
+				}
+			}
 		}
-		
-		return null;
+		return list2;
 	}
 
 	public List<String> contactTracing(String inputStudentNumber) {
-		// TODO Auto-generated method stub
+		List <String> courses = findMatchingCourses(inputStudentNumber);
+		List <String> students = findMatchingStudents(courses);
+		System.out.print(students);
+		
 		return null;
 	}
 	

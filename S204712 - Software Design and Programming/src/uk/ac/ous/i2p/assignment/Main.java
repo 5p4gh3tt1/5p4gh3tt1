@@ -10,20 +10,24 @@ public class Main {
 		/*Initial phase of the script where the data is hard coded and the Maps are created as
 		objects with the type of the interface */
 		
-		//Create the first map 
+		//Create the first map of the students 
 		Map<String, String> studentNameNum = new HashMap<>();
 		//Add the data to the map
 		studentNameNum.put("Clint Eastwood", "S101");
 		studentNameNum.put("Jamie Foxx", "S102");
 		studentNameNum.put("Olivia Wilde", "S103");
+		studentNameNum.put("Bob Geldoff", "S104");
+		studentNameNum.put("George Clooney", "S105");
 		
-		//Create the second map
+		//Create the second map of the student emails
 		Map<String, String> studentNumEmail = new HashMap<>();
 		studentNumEmail.put("S101", "abc@uos.ac.uk");
-		studentNumEmail.put("S102", "xyz@uos.ac.uk");
+		studentNumEmail.put("S102", "bvbv@uos.ac.uk");
+		studentNumEmail.put("S103", "xyz@uos.ac.uk");
 		studentNumEmail.put("S104", "klm@uos.ac.uk");
+		studentNumEmail.put("S105", "yttyty@uos.ac.uk");
 		
-		//Create the third map
+		//Create the third map of the courses at the university
 		Map<String, String> courseNameID = new HashMap<>();
 		courseNameID.put("Software Engineering", "SE01");
 		courseNameID.put("Network Engineering", "NE02");
@@ -44,10 +48,7 @@ public class Main {
 		studentCourseIDCS03.put("S101", "CS03");
 		studentCourseIDCS03.put("S102", "CS03");
 		studentCourseIDCS03.put("S103", "CS03");
-		
-
-
-		
+				
 		//Add pre-defined map (studentNameNum) to the variables defined in Students representing the maps 
 		//student.loadStudentList(studentNameNum);
 		//System.out.print(student.map_student);
@@ -60,7 +61,7 @@ public class Main {
 		student.loadEmailList(studentNumEmail);
 		
 		//Define the objects for each course list
-		ContactTracing courseNE02 = new Students();				
+		ContactTracing courseNE02 = new Students();
 		courseNE02.loadCourseList(courseNameID);
 		courseNE02.loadStudentCourseList(studentCourseIDNE02);
 		
@@ -75,20 +76,25 @@ public class Main {
 		//Which student to search for
         String student_number = "S101";
         
+        courseSE01.contactTracing(student_number);
+        courseNE02.contactTracing(student_number);
+        courseCS03.contactTracing(student_number);
+        
         //Search through each of the course lists for the student and convert them to a string, in preparation to add to a List
-		String s1 = courseNE02.findMatchingCourses(student_number).toString();
-		String s2 = courseSE01.findMatchingCourses(student_number).toString();
-		String s3 = courseCS03.findMatchingCourses(student_number).toString();
+		//String s1 = courseNE02.findMatchingCourses(student_number).toString();
+		//String s2 = courseSE01.findMatchingCourses(student_number).toString();
+		//String s3 = courseCS03.findMatchingCourses(student_number).toString();
 		
-		//Create the list that will 
-		List<String> main_list = new ArrayList<>();
-		main_list.add(s1);
-		main_list.add(s2);
-		main_list.add(s3);
+		//Create the list of the classes that the student is enrolled on
+		//List<String> main_list = new ArrayList<>();
+		//main_list.add(s1);
+		//main_list.add(s2);
+		//main_list.add(s3);
 		
-		System.out.print(main_list);
+		//courseNE02.findMatchingStudents(main_list);
 		
-		student.findMatchingStudents(main_list);
+
 		
+			
 	}
 }
