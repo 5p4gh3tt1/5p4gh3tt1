@@ -1,9 +1,9 @@
 package uk.ac.ous.i2p.assignment;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
@@ -48,53 +48,42 @@ public class Main {
 		studentCourseIDCS03.put("S101", "CS03");
 		studentCourseIDCS03.put("S102", "CS03");
 		studentCourseIDCS03.put("S103", "CS03");
-				
-		//Add pre-defined map (studentNameNum) to the variables defined in Students representing the maps 
-		//student.loadStudentList(studentNameNum);
-		//System.out.print(student.map_student);
 		
-		/*Create the Object with the type of the Interface, we can then use the empty methods
+		/*Create the Objects with the type of the Interface, we can then use the empty methods
 		that are referenced in Students to add the previously created maps to the object
 		 */
-		ContactTracing student = new Students();		
-		student.loadStudentList(studentNameNum);
-		student.loadEmailList(studentNumEmail);
 		
 		//Define the objects for each course list
 		ContactTracing courseNE02 = new Students();
 		courseNE02.loadCourseList(courseNameID);
 		courseNE02.loadStudentCourseList(studentCourseIDNE02);
+		courseNE02.loadEmailList(studentNumEmail);
 		
 		ContactTracing courseSE01 = new Students();
 		courseSE01.loadCourseList(courseNameID);
 		courseSE01.loadStudentCourseList(studentCourseIDSE01);
+		courseSE01.loadEmailList(studentNumEmail);
 		
 		ContactTracing courseCS03 = new Students();
 		courseCS03.loadCourseList(courseNameID);
 		courseCS03.loadStudentCourseList(studentCourseIDCS03);
+		courseCS03.loadEmailList(studentNumEmail);
 		
-		//Which student to search for
-        String student_number = "S101";
+		//Define the student who has tested positive or has been told to self isolate
+		Scanner positive_student = new Scanner(System.in);
+		System.out.println("Please enter the number of the student who has tested positive:");
+		
+		String student_number = positive_student.nextLine();
+		positive_student.close();
+		      
+        //Perform the contract tracing method on each of the course objects.
+        List <String> s1 = courseSE01.contactTracing(student_number);
+        List <String> s2 = courseNE02.contactTracing(student_number);
+        List <String> s3 = courseCS03.contactTracing(student_number);
         
-        courseSE01.contactTracing(student_number);
-        courseNE02.contactTracing(student_number);
-        courseCS03.contactTracing(student_number);
-        
-        //Search through each of the course lists for the student and convert them to a string, in preparation to add to a List
-		//String s1 = courseNE02.findMatchingCourses(student_number).toString();
-		//String s2 = courseSE01.findMatchingCourses(student_number).toString();
-		//String s3 = courseCS03.findMatchingCourses(student_number).toString();
-		
-		//Create the list of the classes that the student is enrolled on
-		//List<String> main_list = new ArrayList<>();
-		//main_list.add(s1);
-		//main_list.add(s2);
-		//main_list.add(s3);
-		
-		//courseNE02.findMatchingStudents(main_list);
-		
-
-		
+        System.out.println("Software Engineering: " + s1 );
+		System.out.println("Network Engineering: " + s2);
+		System.out.println("Cyber Security: " + s3);
 			
 	}
 }
