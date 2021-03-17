@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Main {
+public class ContactTracingApplicationPart1 {
 	public static void main(String[] args) {
 		/*Initial phase of the script where the data is hard coded and the Maps are created as
 		objects with the type of the interface */
